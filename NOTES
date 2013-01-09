@@ -1,6 +1,7 @@
 productStatus
 	defaultStatus			Normal
 	pfDirectShip			Direct-ship from US, £15.95
+	inventoryCode9			Inventory Code 9, discontinued/no longer stocked
 
 rohsStatusCode
 	YES						Yes
@@ -9,6 +10,7 @@ rohsStatusCode
 
 stockType.status
 	1
+	-4						Discontinued?
 
 stockType.regionalBreakdown.status
 	1
