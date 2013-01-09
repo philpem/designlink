@@ -1,0 +1,8 @@
+syntax: glob
+
+# text editor scraps
+*~
+.*.sw?
+
+# python
+*.pyc
