@@ -18,7 +18,8 @@ password = "CadSoft2"
 
 timestamp = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.000")
 sha1 = hashlib.sha1()
-hmac_obj = hmac.new(password, "searchByKeyword" + timestamp, hashlib.sha1)
+#hmac_obj = hmac.new(password, "searchByKeyword" + timestamp, hashlib.sha1)
+hmac_obj = hmac.new(password, "searchByPremierFarnellPartNumber" + timestamp, hashlib.sha1)
 digest = hmac_obj.digest()
 signature = base64.b64encode(digest)
 
@@ -44,4 +45,6 @@ keywordParameter.RefinementParameters.rohsCompliant = False
 print client.service.searchByKeyword(keywordParameter)
 """
 
-print client.service.searchByKeyword('LM324', 0, 50)
+#print client.service.searchByKeyword('LM324', 0, 50)
+
+print client.service.searchByPremierFarnellPartNumber('1861629')

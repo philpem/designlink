@@ -22,8 +22,8 @@
       <xsd:element name="keywordSearchReturn">
         <xsd:complexType>
           <xsd:sequence>
-          	<xsd:element name="numberOfResults" type="xsd:int" />
-          	<xsd:element name="products" type="tns:products"></xsd:element>
+          	<xsd:element name="numberOfResults" type="xsd:int" maxOccurs="1"/>
+          	<xsd:element name="products" type="tns:products" maxOccurs="unbounded" minOccurs="0"></xsd:element>
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -211,6 +211,21 @@
       		<xsd:element name="attributeUnit" type="xsd:string"></xsd:element>
       	</xsd:sequence>
       </xsd:complexType>
+      <xsd:element name="premierFarnellPartNumbers">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="Sku" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="premierFarnellPartNumberReturn">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="numberOfResults" type="xsd:int" maxOccurs="1"></xsd:element>
+      			<xsd:element name="products" type="tns:products" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="searchByKeywordRequest">
@@ -219,23 +234,45 @@
   <wsdl:message name="searchByKeywordResponse">
     <wsdl:part element="tns:keywordSearchReturn" name="parameters"/>
   </wsdl:message>
+  <wsdl:message name="searchByPremierFarnellPartNumberRequest">
+  	<wsdl:part name="parameters" element="tns:premierFarnellPartNumbers"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="searchByPremierFarnellPartNumberResponse">
+  	<wsdl:part name="parameters" element="tns:premierFarnellPartNumberReturn"></wsdl:part>
+  </wsdl:message>
   <wsdl:portType name="designlinkWSDL">
     <wsdl:operation name="searchByKeyword">
       <wsdl:input message="tns:searchByKeywordRequest"/>
       <wsdl:output message="tns:searchByKeywordResponse"/>
     </wsdl:operation>
+    <wsdl:operation name="searchByPremierFarnellPartNumber">
+    	<wsdl:input message="tns:searchByPremierFarnellPartNumberRequest"></wsdl:input>
+    	<wsdl:output message="tns:searchByPremierFarnellPartNumberResponse"></wsdl:output>
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NewWSDLFileSOAP" type="tns:designlinkWSDL">
-    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="searchByKeyword">
-      <soap:operation soapAction="http://pf.com/soa/services/v1/searchByKeyword"/>
-      <wsdl:input>
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
+  	<soap:binding style="document"
+  		transport="http://schemas.xmlsoap.org/soap/http" />
+  	<wsdl:operation name="searchByKeyword">
+  		<soap:operation
+  			soapAction="http://pf.com/soa/services/v1/searchByKeyword" />
+  		<wsdl:input>
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="searchByPremierFarnellPartNumber">
+  		<soap:operation
+  			soapAction="http://pf.com/soa/services/v1/searchByPartNumber" />
+  		<wsdl:input>
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="designlink">
     <wsdl:port binding="tns:NewWSDLFileSOAP" name="NewWSDLFileSOAP">
