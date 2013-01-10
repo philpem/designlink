@@ -4,13 +4,17 @@ from suds.client import Client
 from suds.sax.element import Element
 import sys
 
+from urllib import pathname2url
+import os
+wsdl_url = 'file:' + pathname2url(os.path.join(os.path.dirname(os.path.realpath(__file__)), "designlink.wsdl"))
+
 logging.basicConfig(level=logging.INFO)
 logging.getLogger('suds.client').setLevel(logging.DEBUG)
 #logging.getLogger('suds.transport').setLevel(logging.DEBUG)
 #logging.getLogger('suds.xsd.schema').setLevel(logging.DEBUG)
 #logging.getLogger('suds.wsdl').setLevel(logging.DEBUG)
 
-client = Client('file:///home/esuser/workspace/test/WebContent/designlink.wsdl', location='https://uk.farnell.com/pffind/services/SearchService', faults=False, headers={'Content-Type': 'text/html'}, xstq=True, prefixes=True)
+client = Client(wsdl_url, location='https://uk.farnell.com/pffind/services/SearchService', faults=False, headers={'Content-Type': 'text/html'}, xstq=True, prefixes=True)
 print client
 
 def do_auth(client, operation):
