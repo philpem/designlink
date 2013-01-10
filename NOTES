@@ -44,7 +44,10 @@ discountReason
 	6						Price Check
 
 Datasheet types
+	*						One-page summary
+	3						3D product image
 	A						Application note
+	C						Manufacturer catalogue
 	D						Drawing
 	H						element14 Technical Page	(or HTTP link?)
 	I						Operating instructions
