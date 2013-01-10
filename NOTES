@@ -1,3 +1,5 @@
+Leadtimes -- Farnell Web Interface adds nine days to leadtimes specified by DesignLink (e.g. DL says 102 days, WEB says 111)
+
 productStatus
 	defaultStatus			Normal
 	pfDirectShip			Direct-ship from US, £15.95
@@ -5,33 +7,52 @@ productStatus
 
 rohsStatusCode
 	YES						Yes
-	? NO					No
-	? ?						Excluded
+	Y-EX					Yes - Excluded
+	NO						No
+	NA						Not Applicable
+	TBA						To be determined / unknown
 
 stockType.status
-	1
-	-4						Discontinued?
+	1						"In stock for next working day delivery"
+	0						"Out of Stock", units on order
+	-1						"Awaiting Delivery"
+	-2						"Short Lead Time"
+	-3						"No Longer Manufactured"
+	-4						"No Longer Stocked"
+	-5						"Out of Stock", need to order from supplier
 
 stockType.regionalBreakdown.status
-	1
+	Same as stockType.status
 
 vatHandlingCode
-	SLST
+	SLST					Standard rate
+	SLZE					Zero rate
 
 releaseStatusCode
-	-1						General release?
+	-1						General release / none?
+	0
+	1
+	2						New?
 
-inventoryCode
+inventoryCode	-- Optional. If not sent, stock status normal
 	9						No longer stocked?
 
 discountReason
 	0						No discount
-	1						No longer stocked?
+	1						Available until stocks exhausted / last chance to buy
 	5						Special Offer
 	6						Price Check
 
 Datasheet types
+	A						Application note
+	D						Drawing
+	H						element14 Technical Page	(or HTTP link?)
+	I						Operating instructions
 	L						Simulation model
+	O						Miscellaneous/other
 	P						Manufacturer product page
+	R						Richmedia					(e.g. Youtube video)
 	T						Technical datasheet
+	U						REACH SVHC safe-use data
 	X						CAD
+	Y						Safety data sheet / MSDS
