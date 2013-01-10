@@ -69,7 +69,7 @@
                 		maxOccurs="unbounded" minOccurs="0">
                 	</xsd:element>
                 	<xsd:element name="inv" type="xsd:int"></xsd:element>
-                	<xsd:element name="vendorId" type="xsd:int"></xsd:element>
+                	<xsd:element name="vendorId" type="xsd:string"></xsd:element>
                 	<xsd:element name="vendorName" type="xsd:string"></xsd:element>
                 	<xsd:element name="brandName" type="xsd:string"></xsd:element>
                 	<xsd:element name="translatedManufacturerPartNumber"
