@@ -6,7 +6,8 @@ import sys
 
 from urllib import pathname2url
 import os
-wsdl_url = 'file:' + pathname2url(os.path.join(os.path.dirname(os.path.realpath(__file__)), "designlink.wsdl"))
+#wsdl_url = 'file:' + pathname2url(os.path.join(os.path.dirname(os.path.realpath(__file__)), "designlink.wsdl"))
+wsdl_url = 'https://uk.farnell.com/pffind/services/SearchService?wsdl'
 
 logging.basicConfig(level=logging.INFO)
 logging.getLogger('suds.client').setLevel(logging.DEBUG)
@@ -36,9 +37,15 @@ def do_auth(client, operation):
 	acctinfo.append(Element('customerId', ns=ssnns).setText(accountname))
 	client.set_options(soapheaders=(userinfo,acctinfo))
 
+print "-------- Search By Keyword LM324"
 do_auth(client, 'searchByKeyword')
 print client.service.searchByKeyword('LM324', 0, 50)
 
+print "-------- Search By Premier Farnell Part Number (intended failure)"
 do_auth(client, 'searchByPremierFarnellPartNumber')
 print client.service.searchByPremierFarnellPartNumber('1861629')
+
+print "-------- Search By Premier Farnell Part Number (intended success)"
+do_auth(client, 'searchByPremierFarnellPartNumber')
+print client.service.searchByPremierFarnellPartNumber('2084573')
 
