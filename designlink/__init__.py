@@ -28,7 +28,7 @@ class DesignLinkClient(object):
 	suds_client = None
 	"""Consolidated API for consuming web services"""
 
-	def __init__(self, soap_endpoint = 'https://uk.farnell.com/pffind/services/SearchService', user_id = "CadSoft2", encryption_key = "CadSoft2"):
+	def __init__(self, user_id, encryption_key, soap_endpoint = 'https://uk.farnell.com/pffind/services/SearchService'):
 		"""
 		Instantiate the suds client and add the SOAP types and methods to the list of attributes
 		"""
